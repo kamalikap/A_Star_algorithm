@@ -9,7 +9,7 @@
 
 using namespace std;
 
-enum class State {kEmpty, kObstacle, kClosed, kPath};
+enum class State {kEmpty, kObstacle, kClosed, kPath, kStart, kFinish};
 
 
 const int delta[4][2]{{-1,0}, {0, -1}, {1, 0}, {0,1}};
@@ -132,6 +132,8 @@ vector<vector<State>> Search(vector<vector<State>> grid, int start[2], int goal[
 		grid[x][y] = State::kPath;
 		
 		if (x ==goal[0] && y==goal[1]){
+			grid[start[0]][start[1]]= State::kStart;
+			grid[goal[0]][goal[1]]= State::kFinish;
 			return grid;
 		}
 		ExpandNeighbors(current, goal, open, grid);
@@ -146,6 +148,8 @@ string CellString(State cell ){
 	switch(cell){
 		case State::kObstacle: return "* ";
 		case State::kPath: return "> ";
+		case State::kStart: return "s ";
+		case State::kFinish: return "g ";
 		default: return "0 ";
 	}
 }
