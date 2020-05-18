@@ -4,6 +4,23 @@ Given: Map, Starting Location, Goal Location, Cost
 
 Goal: Find minimum cost path.
 
+
+## Intro
+Peter Hart, Nils Nilsson and Bertram Raphael of Stanford Research Institute (now SRI International)
+first published the algorithm in 1968.</br>
+• It can be seen as an extension of Edsger Dijkstra's 1959 algorithm.</br> 
+• A* achieves better performance by using heuristics to guide its search.</br>
+• Space complexity- O(b**d)
+
+
+## Build
+* mkdir a_star
+* cd a_star
+* git clone https://github.com/kamalikap/A_Star_algorithm.git
+* g++ ./a_star.cpp -o a_star.out
+* ./a_star.out
+
+
 ## Input:
 0,1,0,0,0,</br>
 0,1,0,0,0,</br>
@@ -19,19 +36,28 @@ p * 0 p p p </br>
 p p p p * g </br>
 
 
-## Intro
-Peter Hart, Nils Nilsson and Bertram Raphael of Stanford Research Institute (now SRI International)
-first published the algorithm in 1968.</br>
-•It can be seen as an extension of Edsger Dijkstra's 1959 algorithm.</br> 
-•A* achieves better performance by using heuristics to guide its search.</br>
-•Space complexity- O (b **d)
+## Algorithm
+This algo is similar to breadth first search with additional step of computing heuristic.
 
-## Build
-* mkdir a_star
-* cd a_star
-* git clone https://github.com/kamalikap/A_Star_algorithm.git
-* g++ ./a_star.cpp -o a_star.out
-* ./a_star.out
+Search( grid, start_point, goal_point ) :
+1. Initialize an empty list of open nodes.
+2. Initialize a starting node with the following:</br>
+        • x and y values given by initial_point.</br>
+        • g = 0, where g is the cost for each move.</br>
+        • h given by the heuristic function (a function of the current coordinates and the goal).
+3. Add the new node to the list of open nodes.
+4. while the list of open nodes is nonempty:
+        1. Sort the open list by f-value
+        2. Pop the optimal cell (called the current cell).
+        3. Mark the cell's coordinates in the grid as part of the path.
+        4. if the current cell is the goal cell:</br>
+                •return the grid.</br>
+        5. else, expand the search to the current node's neighbors. This includes the following steps:</br>
+                • Check each neighbor cell in the grid to ensure that the cell is empty: it hasn't been closed and is not an obstacle.</br>
+                • If the cell is empty, compute the cost (g value) and the heuristic, and add to the list of open nodes.</br>
+                • Mark the cell as closed.
+5. If you exit the while loop because the list of open nodes is empty, you have run out of new nodes to explore and haven't found a path
+
 
 ## Explanation
 
@@ -74,6 +100,7 @@ Now we always expand with the smallest g_val. So these both have the same value 
 * [2, 5]----- [3, 5] g val: 10
 * [3, 5] -----[4,5] gval: 11-GOAL
 
+
 ### Expansion with Heuristic
 Heuristic function is an optimistic guess of how far we are away from the goal.
 h(x, y) <= distance to goal from x, y.
@@ -83,7 +110,6 @@ g-val + heuristic(0 +9) which is called f-val.
 * Open <State>  <g val>  <f val> </br>
 Open [0, 0] 0  9 </br>
 F = g +h(x,y)
-
 * Now remove the element with the low F value.
 * Suppose we try to expand node [4,1]
 * [4, 1] 5 9
@@ -96,29 +122,6 @@ F = g +h(x,y)
 * [4, 4]—[4,5] 9  9
 
 Reached Goal
-
-
-## Algorithm
-This algo is similar to breadth first search with additional step of computing heuristic.
-
-Search( grid, initial_point, goal_point ) :
-1. Initialize an empty list of open nodes.
-2. Initialize a starting node with the following:</br>
-	•x and y values given by initial_point.</br>
-	•g = 0, where g is the cost for each move.</br>
-	•h given by the heuristic function (a function of the current coordinates and the goal).
-3. Add the new node to the list of open nodes.
-4. while the list of open nodes is nonempty:
-	1. Sort the open list by f-value
-	2. Pop the optimal cell (called the current cell).
-	3. Mark the cell's coordinates in the grid as part of the path.
-	4. if the current cell is the goal cell:</br>
-		•return the grid.</br>
-	5. else, expand the search to the current node's neighbors. This includes the following steps:</br>
-		• Check each neighbor cell in the grid to ensure that the cell is empty: it hasn't been closed and is not an obstacle.</br>
-		• If the cell is empty, compute the cost (g value) and the heuristic, and add to the list of open nodes.</br>
-		• Mark the cell as closed.
-5. If you exit the while loop because the list of open nodes is empty, you have run out of new nodes to explore and haven't found a path
 
 
 ## References
