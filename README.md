@@ -29,6 +29,9 @@ first published the algorithm in 1968.</br>
 0,0,0,1,0,</br>
 
 ## Output:
+Naming convention </br>
+s-start, g-goal, p-path</br>
+ 
 s * 0 0 0 0 </br>
 p * 0 0 0 0 </br>
 p * 0 0 0 0 </br>
