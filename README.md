@@ -65,19 +65,19 @@ Search( grid, start_point, goal_point ) :
 
 Below is a 5x6 matrix with start and goal nodes assigned at (0, 0) and (4, 5) respectively. </br>
 
-s | * | 0 | 0 | 0 | 0
-0 | * | 0 | 0 | 0 | 0
-0 | * | 0 | 0 | 0 | 0
-0 | * | 0 | 0 | 0 | 0
-0 | 0 | 0 | 0 | * | g
+s | * | 0 | 0 | 0 | 0</br>
+0 | * | 0 | 0 | 0 | 0</br>
+0 | * | 0 | 0 | 0 | 0</br>
+0 | * | 0 | 0 | 0 | 0</br>
+0 | 0 | 0 | 0 | * | g</br>
 
 Example of a heuristic fucntion:
 
-s(9) | 8 | 7 | 6 | 5 | 4
-8 | 7 | 6 | 5 | 4 | 3
-7 | 6 | 5 | 4 | 3 | 2
-6 | 5 | 4 | 3 | 2 | 1
-5 | 4 | 3 | 2 | 1 | g(0)
+s(9) | 8 | 7 | 6 | 5 | 4</br>
+8 | 7 | 6 | 5 | 4 | 3</br>
+7 | 6 | 5 | 4 | 3 | 2</br>
+6 | 5 | 4 | 3 | 2 | 1</br>
+5 | 4 | 3 | 2 | 1 | g(0)</br>
 
 
 ### Expansion without Heuristic
