@@ -29,8 +29,7 @@ first published the algorithm in 1968.</br>
 0,0,0,1,0,</br>
 
 ## Output:
-Naming convention </br>
-s-start, g-goal, p-path</br>
+Naming convention-> s-start, g-goal, p-path</br>
  
 s * 0 0 0 0 </br>
 p * 0 0 0 0 </br>
@@ -66,19 +65,19 @@ Search( grid, start_point, goal_point ) :
 
 Below is a 5x6 matrix with start and goal nodes assigned at (0, 0) and (4, 5) respectively. </br>
 
-s|*|0|0|0|0</br>
-0|*|0|0|0|0</br>
-0|*|0|0|0|0</br>
-0|*|0|0|0|0</br>
-0|0|0|0|*|g</br>
+s | * | 0 | 0 | 0 | 0
+0 | * | 0 | 0 | 0 | 0
+0 | * | 0 | 0 | 0 | 0
+0 | * | 0 | 0 | 0 | 0
+0 | 0 | 0 | 0 | * | g
 
-Example of a heuristic fucntion</br>
+Example of a heuristic fucntion:
 
-s(9)|8|7|6|5|4</br>
-8|7|6|5|4|3</br>
-7|6|5|4|3|2</br>
-6|5|4|3|2|1</br>
-5|4|3|2|1|g(0)</br>
+s(9) | 8 | 7 | 6 | 5 | 4
+8 | 7 | 6 | 5 | 4 | 3
+7 | 6 | 5 | 4 | 3 | 2
+6 | 5 | 4 | 3 | 2 | 1
+5 | 4 | 3 | 2 | 1 | g(0)
 
 
 ### Expansion without Heuristic
