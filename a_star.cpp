@@ -4,17 +4,20 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
-#include <algorithm>
-
+#include <algorithm>  //for sort
 
 using namespace std;
 
+
 enum class State {kEmpty, kObstacle, kClosed, kPath, kStart, kFinish};
+
 
 //variable delta has 4 rows, with two co-ordinates
 const int delta[4][2]{{-1,0}, {0, -1}, {1, 0}, {0,1}};
 
-//3.Function parses each line in the file and whenever it encounters
+
+//3.
+//Function parses each line in the file and whenever it encounters
 // 1 gives it a value of kObstacle and for
 // 0 kEmpty
 vector<State> ParseLine(string a){
@@ -33,7 +36,9 @@ vector<State> ParseLine(string a){
 	return r;
 }
 
-//2. Function reads the file "1.board" line by line and adds it to the vector board.
+
+//2.
+//Function reads the file "1.board" line by line and adds it to the vector board.
 vector<vector<State>> ReadBoardFile(string path) {
 	ifstream my_file(path);
 	string line;
@@ -48,7 +53,9 @@ vector<vector<State>> ReadBoardFile(string path) {
 	}
 }
 
-//8. Function accepts two node of vector type int. Remember this node has the form of (x, y, g, h)
+
+//8.
+// Function accepts two node of vector type int. Remember this node has the form of (x, y, g, h)
 //f-value is argument’s g val(a[2]) + h val(a[3])
 //It compares the f-val of both the nodes. (F1>f2)
 //If the f val of first argument is greater than second, it will return true or else false.
@@ -69,13 +76,15 @@ bool Compare(const vector<int> node1, const vector<int> node2){
 }
 
 
-
-//7. Function sorts the open list according to f-val(g+h) from Compare function.
+//7.
+//Function sorts the open list according to f-val(g+h) from Compare function.
 void CellSort(vector<vector<int>> *v){
 	sort(v->begin(), v->end(), Compare);
 }
 
-//5. Function computes the distance to the goal
+
+//5.
+//Function computes the distance to the goal
 //Heuristic function calculates the Manhattan Distance.
 //Ex:For first iteration- x1-0, y1-0, x2-4, y2-5 , MD = (4-0)+(5-0)=9,
 //From first, it will take 9 steps to reach the goal.
@@ -87,7 +96,8 @@ int Heuristic(int x1, int y1, int x2, int y2 ){
 }
 
 
-//10. Function ensures that the potential neighbor coordinates are 
+//10.
+//Function ensures that the potential neighbor coordinates are 
 //on the grid and that the cell is open/empty.
 //Checks the (x,y) coordinate is on the grid.
 //	X > 0 and < grid.size
@@ -105,16 +115,17 @@ bool CheckValidCell(int x, int y, vector<vector<State>> &grid){
 }
 
 
-
-
-//6. Function adds the node to the open list and marks the grid cell as closed.
+//6. 
+//Function adds the node to the open list and marks the grid cell as closed.
 void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &open, vector<vector<State>> &grid){
 	vector<int> node {x,y,g,h};
 	open.push_back(node);
 	grid[x][y] = State::kClosed;
 }
 
-//9. Function loops through the current node's neighbors and calls appropriate functions to add neighbors to the open list.
+
+//9.
+//Function loops through the current node's neighbors and calls appropriate functions to add neighbors to the open list.
 void ExpandNeighbors(const vector<int> current, int goal[2], vector<vector<int>> &open, vector<vector<State>> &grid){
 	
 	//assign the values of x, y, g to current node values.
@@ -139,7 +150,9 @@ void ExpandNeighbors(const vector<int> current, int goal[2], vector<vector<int>>
 	}
 }
 
-//4. Function performs the Search operation.
+
+//4.
+//Function performs the Search operation.
 //int start[2] represnts two elements in the array.
 vector<vector<State>> Search(vector<vector<State>> grid, int start[2], int goal[2]){
 	vector<vector<int>> open {};
@@ -178,7 +191,8 @@ vector<vector<State>> Search(vector<vector<State>> grid, int start[2], int goal[
 }
 
 		
-//12. Function assigns values to the particular States.
+//12.
+//Function assigns values to the particular States.
 string CellString(State cell ){
 	switch(cell){
 		case State::kObstacle: return "* ";
@@ -189,7 +203,9 @@ string CellString(State cell ){
 	}
 }
 
-//11. Function prints the grid with the updated values.
+
+//11.
+//Function prints the grid with the updated values.
 void PrintBoard(vector<vector<State>> board){
 	for (auto i=0; i<board.size(); i++){
 		for(int j=0; j<board[i].size(); j++){
@@ -201,8 +217,8 @@ void PrintBoard(vector<vector<State>> board){
 }
 
 
-
-//1. Main Function
+//1.
+//Main Function
 int main(){
         auto board = ReadBoardFile("1.board");
 
@@ -213,6 +229,5 @@ int main(){
 
         PrintBoard(solution);
 }
-
 
 
